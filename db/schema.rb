@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20180110190859) do
     t.string "password_digest"
     t.string "email"
     t.string "gamertag"
+    t.string "membershipId"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
