@@ -10,12 +10,13 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    # byebug
+    byebug
     @user = User.new(user_params)
+    @user.password = (params[:password])
     if @user.save
       token = issue_token(user: @user.id)
       # byebug
-      render json: {user: @user.gamertag, id: @user.id, membershipId: (@user.membershipId).to_s, token: token}
+      render json: {user: @user.gamertag, id: @user.id, platform: @user.platform, membershipId: (@user.membershipId).to_s, token: token}
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -25,7 +26,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :gamertag, :membershipId)
+    params.require(:user).permit([:first_name, :last_name, :email, :password, :gamertag, :membershipId, :platform])
   end
 
 end
