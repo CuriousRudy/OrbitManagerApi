@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :notifications
+
   namespace :api do
     namespace :v1 do
       resources :forums
@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       resources :memberships
       resources :clans
       resources :users
+      resources :characters
+      resources :notifications
       post '/auth', to: 'auth#create'
       get '/current_user', to: 'auth#show'
     end
